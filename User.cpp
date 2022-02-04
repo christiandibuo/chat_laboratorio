@@ -12,3 +12,11 @@ User::User(std::string name):username(name) {
 User::~User() {
 
 }
+
+const std::string &User::getUsername() const {
+    return username;
+}
+
+void User::setUsername(const std::string &username) {
+    User::username = username;
+}

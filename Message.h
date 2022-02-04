@@ -9,7 +9,7 @@
 
 class Message {
 public:
-    Message(std::string , std::string receiver, std::string sender):text(text), receiver(receiver), sender(sender){}
+    Message(std::string text, std::string receiver, std::string sender):text(text), receiver(receiver), sender(sender){}
     ~Message(){}
 
     const std::string &getSender() const {
