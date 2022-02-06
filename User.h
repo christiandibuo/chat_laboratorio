@@ -18,10 +18,15 @@ public:
     const std::string &getUsername() const;
 
     void setUsername(const std::string &username);
-    //todo add method to create and manipulate the chat
+
+    void createChat(User &user);
+
+    std::shared_ptr<Chat> searchChat(User &user);
+
+    void deleteChat(User &user);
 private:
     std::string username;
-    std::map<std::string, std::shared_ptr<Chat>> chat; //todo check if map is good as chat
+    std::map<std::string, std::shared_ptr<Chat>> chat;
 
 
 
