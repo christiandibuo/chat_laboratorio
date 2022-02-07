@@ -14,7 +14,7 @@ class User;
 
 class Chat {
 public:
-    Chat (User firstuser, User seconduser);
+     Chat (User firstUser, User secondUser);
 
     ~Chat();
 

@@ -4,7 +4,7 @@
 
 #include "Chat.h"
 
-Chat::Chat(User firstuser, User seconduser): firstuserName(firstuser.getUsername()), seconduserName(seconduser.getUsername()) {
+Chat::Chat(User firstUser, User secondUser): firstuserName(firstUser.getUsername()), seconduserName(secondUser.getUsername()) {
 }
 
 Chat::~Chat() {

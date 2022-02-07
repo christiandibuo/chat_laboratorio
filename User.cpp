@@ -22,7 +22,7 @@ void User::setUsername(const std::string &username) {
 }
 
 void User::createChat(User &user) {
-    Chat *c =new Chat(this, user);
+    Chat *c =new Chat((*this), user);
     std::shared_ptr<Chat> ct=std::make_shared<Chat>(*c);
     chat.insert(std::make_pair(user.getUsername(),ct));
 }
