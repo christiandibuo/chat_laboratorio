@@ -7,16 +7,18 @@
 
 #include <iostream>
 #include <vector>
+#include <list>
 
 #include "User.h"
 #include "Message.h"
+#include "Subject.h"
 class User;
 
-class Chat {
+class Chat :public Subject{
 public:
-     Chat (User firstUser, User secondUser);
+    Chat (User firstUser, User secondUser);
 
-    ~Chat();
+    virtual ~Chat();
 
     void addNewMessage(const Message& newmessage);
 
@@ -30,11 +32,17 @@ public:
 
     const std::string &getSeconduserName() const;
 
+    void registration(std::shared_ptr<Observer> o) override;
+
+    void remove(std::shared_ptr<Observer> o) override;
+
+    void notify() override;
 
 private:
     std::string firstuserName;
     std::string seconduserName;
     std::vector<Message> messages;
+    std::list<std::shared_ptr<Observer>> observers;
 };
 
 
