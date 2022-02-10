@@ -24,11 +24,12 @@ public:
     std::shared_ptr<Chat> searchChat(User &user);
 
     void deleteChat(User &user);
+
+    void changeNotificationState(User &user, bool notificationState);
+
 private:
     std::string username;
     std::map<std::string, std::shared_ptr<Chat>> chat;
-
-
 
 };
 

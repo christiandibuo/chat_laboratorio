@@ -28,6 +28,8 @@ public:
 
     void setSeconduserName(const std::string &seconduserName);
 
+    const Message& lastMessage() const;
+
     const std::string &getFirstuserName() const;
 
     const std::string &getSeconduserName() const;
@@ -38,11 +40,16 @@ public:
 
     void notify() override;
 
+    bool isNotificationOn() const;
+
+    void setNotificationState(bool notificationState);
+
 private:
     std::string firstuserName;
     std::string seconduserName;
     std::vector<Message> messages;
     std::list<std::shared_ptr<Observer>> observers;
+    bool notificationState;
 };
 
 

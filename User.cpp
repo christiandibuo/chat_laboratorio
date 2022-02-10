@@ -25,6 +25,12 @@ void User::createChat(User &user) {
     Chat *c =new Chat((*this), user);
     std::shared_ptr<Chat> ct=std::make_shared<Chat>(*c);
     chat.insert(std::make_pair(user.getUsername(),ct));
+    c->setNotificationState(true);
+}
+
+void User::changeNotificationState(User &user, bool notificationOn) {
+    std::shared_ptr<Chat> c = chat.find(user.getUsername())->second;
+    c->setNotificationState(notificationOn);
 }
 
 std::shared_ptr<Chat> User::searchChat(User &user) {
@@ -36,3 +42,4 @@ void User::deleteChat(User &user) {
     it=chat.find(user.getUsername());
     chat.erase(it);
 }
+

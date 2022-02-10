@@ -19,10 +19,10 @@ void Chat::addNewMessage(const Message & newmessage) {
 
 void Chat::readMessage(int i, std::string otherUser) {
     if( i>=0 && i<messages.size())
-        if(messages[i].getSender() == otherUser)
-            std::cout<<messages[i].getText();
-        //TODO: add some method to put the message red, after i visualized it
-        this->notify();
+        if(messages[i].getSender() == otherUser) {
+            std::cout << messages[i].getText();
+            this->notify();
+        }
 }
 
 const std::string &Chat::getFirstuserName() const {
@@ -52,5 +52,17 @@ void Chat::remove(std::shared_ptr<Observer> o) {
 void Chat::notify() {
     for( auto it:observers)
         it->update();
+}
+
+bool Chat::isNotificationOn() const {
+    return notificationState;
+}
+
+void Chat::setNotificationState(bool notificationState) {
+    Chat::notificationState = notificationState;
+}
+
+const Message& Chat::lastMessage() const {
+    return messages.back();
 }
 

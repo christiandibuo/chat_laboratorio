@@ -19,12 +19,10 @@ public:
 
     void update() override;
 
-    void sound();
+    void display(const Message &message);
 
 private:
     std::shared_ptr<Chat> subject;
-
-
 };
 
 

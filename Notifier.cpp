@@ -16,9 +16,10 @@ Notifier::~Notifier() {
 }
 
 void Notifier::update() {
-    this->sound();
+    if(subject->isNotificationOn())
+        display(subject->lastMessage());
 }
 
-void Notifier::sound() {
-    std::cout<<"suono di notfica"<<std::endl;
+void Notifier::display(const Message& message) {
+    std::cout<<"messaggio da: "<<message.getSender()<<": "<<message.getText();
 }
