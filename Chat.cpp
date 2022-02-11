@@ -17,12 +17,17 @@ void Chat::addNewMessage(const Message & newmessage) {
     this->notify();
 }
 
-void Chat::readMessage(int i, std::string otherUser) {
+void Chat::readMessage(int i, std::string receiver, std::string sender) {
     if( i>=0 && i<messages.size())
-        if(messages[i].getSender() == otherUser) {
+        if(messages[i].getReceiver() == receiver && messages[i].getSender() == sender )
             std::cout << messages[i].getText();
-            this->notify();
+        else {
+            if (messages[i].getReceiver() == receiver && messages[i].getSender() != sender)
+                std::cout << "sender is uncorrect";
+            if (messages[i].getReceiver() != receiver && messages[i].getSender() == sender)
+                std::cout << "receiver is uncorrect";
         }
+
 }
 
 const std::string &Chat::getFirstuserName() const {

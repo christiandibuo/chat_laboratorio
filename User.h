@@ -19,7 +19,7 @@ public:
 
     void setUsername(const std::string &username);
 
-    void createChat(User &user);
+    std::shared_ptr<Chat> createChat(User &user);
 
     std::shared_ptr<Chat> searchChat(User &user);
 
@@ -29,7 +29,7 @@ public:
 
 private:
     std::string username;
-    std::map<std::string, std::shared_ptr<Chat>> chat;
+    std::map<std::string, std::shared_ptr<Chat>> chats;
 
 };
 

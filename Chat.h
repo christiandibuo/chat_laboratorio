@@ -22,7 +22,7 @@ public:
 
     void addNewMessage(const Message& newmessage);
 
-    void readMessage(int i, std::string otherUser);
+    void readMessage(int i, std::string receiver, std::string sender);
 
     void setFirstuserName(const std::string &firstuserName);
 
