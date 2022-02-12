@@ -18,8 +18,8 @@ void Chat::addNewMessage(const Message & newmessage) {
 }
 
 void Chat::readMessage(int i, std::string receiver, std::string sender) {
-    if( i>=0 && i<messages.size())
-        if(messages[i].getReceiver() == receiver && messages[i].getSender() == sender )
+    if( i>=0 && i<messages.size()) {
+        if (messages[i].getReceiver() == receiver && messages[i].getSender() == sender)
             std::cout << messages[i].getText();
         else {
             if (messages[i].getReceiver() == receiver && messages[i].getSender() != sender)
@@ -27,6 +27,11 @@ void Chat::readMessage(int i, std::string receiver, std::string sender) {
             if (messages[i].getReceiver() != receiver && messages[i].getSender() == sender)
                 std::cout << "receiver is uncorrect";
         }
+    }
+    else{
+        throw std::out_of_range("the message does not exist");
+    }
+
 
 }
 
