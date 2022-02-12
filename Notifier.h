@@ -13,7 +13,7 @@
 class Notifier: public Observer {
 public:
 
-    Notifier(const std::shared_ptr<Chat> subject);
+    explicit Notifier( bool notificationState, std::shared_ptr<Chat> subject);
 
     virtual ~Notifier();
 
@@ -21,8 +21,17 @@ public:
 
     void display(const Message &message);
 
+    bool isNotifierActive ();
+
+    void setNotificationState(bool notificationState);
+
+    void attach() override;
+
+    void detach() override;
+
 private:
     std::shared_ptr<Chat> subject;
+    bool notificationState;
 };
 
 

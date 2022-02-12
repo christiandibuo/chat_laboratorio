@@ -25,7 +25,7 @@ public:
 
     void deleteChat(User &user);
 
-    void changeNotificationState(User &user, bool notificationState);
+    void addChat(std::shared_ptr<Chat> chat, User &user);
 
 private:
     std::string username;

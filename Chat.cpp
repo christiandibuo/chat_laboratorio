@@ -59,14 +59,6 @@ void Chat::notify() {
         it->update();
 }
 
-bool Chat::isNotificationOn() const {
-    return notificationState;
-}
-
-void Chat::setNotificationState(bool notificationState) {
-    Chat::notificationState = notificationState;
-}
-
 const Message& Chat::lastMessage() const {
     return messages.back();
 }

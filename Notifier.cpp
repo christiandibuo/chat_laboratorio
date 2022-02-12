@@ -5,21 +5,38 @@
 #include "Notifier.h"
 
 
-Notifier::Notifier(const std::shared_ptr<Chat> subject) : subject(subject) {
-    std::shared_ptr<Notifier> ptr=std::make_shared<Notifier>(*this);
-    subject->registration(ptr);
+Notifier::Notifier( bool notificationState , std::shared_ptr<Chat> subject) : notificationState(notificationState), subject(subject) {
+
 }
 
 Notifier::~Notifier() {
-    std::shared_ptr<Notifier> ptr=std::make_shared<Notifier>(*this);
-    subject->remove(ptr);
 }
 
 void Notifier::update() {
-    if(subject->isNotificationOn())
+    if(isNotifierActive())
         display(subject->lastMessage());
 }
 
 void Notifier::display(const Message& message) {
     std::cout<<"messaggio da: "<<message.getSender()<<": "<<message.getText();
+}
+
+bool Notifier::isNotifierActive() {
+    return notificationState;
+}
+
+void Notifier::setNotificationState(bool notificationState) {
+    Notifier::notificationState=notificationState;
+}
+
+void Notifier::attach() {
+    std::shared_ptr<Notifier> ntfr=std::make_shared<Notifier>(*this);
+    subject->registration(ntfr);
+
+}
+
+void Notifier::detach() {
+    std::shared_ptr<Notifier> ntfr=std::make_shared<Notifier>(*this);
+    subject->remove(ntfr);
+
 }

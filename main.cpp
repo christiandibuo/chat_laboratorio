@@ -11,8 +11,10 @@ int main() {
     std::shared_ptr<Chat> chat=christian.createChat(riccardo);
     Message firstM("ciao, che fai stasera","riccardo", "christian" );
     Message answer("non ho programmi, te?", "christian", "riccardo");
-    //Notifier notifier(chat);
     chat->addNewMessage(firstM);
     chat->addNewMessage(answer);
     chat->readMessage(1,"christian", "riccardo");
+    Notifier ntfr(true,chat);
+
+    christian.deleteChat(riccardo);
 }

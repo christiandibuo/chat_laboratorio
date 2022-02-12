@@ -16,7 +16,7 @@ class User;
 
 class Chat :public Subject{
 public:
-    Chat (User firstUser, User secondUser);
+    explicit Chat (User firstUser, User secondUser);
 
     virtual ~Chat();
 
@@ -28,11 +28,11 @@ public:
 
     void setSeconduserName(const std::string &seconduserName);
 
+    const std::string& getFirstuserName() const;
+
+    const std::string& getSeconduserName() const;
+
     const Message& lastMessage() const;
-
-    const std::string &getFirstuserName() const;
-
-    const std::string &getSeconduserName() const;
 
     void registration(std::shared_ptr<Observer> o) override;
 
@@ -40,16 +40,11 @@ public:
 
     void notify() override;
 
-    bool isNotificationOn() const;
-
-    void setNotificationState(bool notificationState);
-
 private:
     std::string firstuserName;
     std::string seconduserName;
     std::vector<Message> messages;
     std::list<std::shared_ptr<Observer>> observers;
-    bool notificationState;
 };
 
 
