@@ -28,7 +28,7 @@ TEST(Chat, exeptions){
     ASSERT_ANY_THROW(c.readMessage(1));
     ASSERT_NO_THROW(c.readMessage(0));
     ASSERT_EQ(1,c.getnumberReadMessage());
-    c.readMessage(0);
+    ASSERT_EQ(c.readMessage(0),msg1.getText());
     ASSERT_EQ(1,c.getnumberReadMessage());
     Message msg2("second test message","Christian","Riccardo");
     c.addNewMessage(msg2);
@@ -38,5 +38,6 @@ TEST(Chat, exeptions){
     Message msg3("third test message","rixardo","Christian");
     ASSERT_THROW(c.addNewMessage(msg3),std::invalid_argument);
     ASSERT_THROW(c.readMessage(3),std::out_of_range);
+    ASSERT_NE(c.readMessage(0),msg3.getText());
 
 }

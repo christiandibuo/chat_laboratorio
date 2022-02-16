@@ -9,7 +9,7 @@
 
 class Message {
 public:
-    Message(const std::string text, const std::string receiver,const std::string sender, bool read=false)
+    Message(const std::string& text, const std::string& receiver,const std::string& sender, bool read=false)
     :text(text), receiver(receiver), sender(sender), read(read){}
 
     ~Message(){}

@@ -5,7 +5,7 @@
 #include "User.h"
 
 
-User::User(const std::string name):username(name) {
+User::User(const std::string& name):username(name) {
 
 }
 

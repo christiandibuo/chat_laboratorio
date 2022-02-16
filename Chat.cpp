@@ -5,7 +5,7 @@
 #include <list>
 #include "Chat.h"
 
-Chat::Chat(const User firstUser,const User secondUser): firstuserName(firstUser.getUsername()), seconduserName(secondUser.getUsername()) {
+Chat::Chat(const User &firstUser,const User &secondUser): firstuserName(firstUser.getUsername()), seconduserName(secondUser.getUsername()) {
 }
 
 Chat::~Chat() {
@@ -26,10 +26,10 @@ void Chat::addNewMessage(const Message & newmessage) {
     }
 }
 
-void Chat::readMessage(int i) {
+const std::string & Chat::readMessage(int i) {
     if( i>=0 && i<messages.size()) {
-            std::cout << messages[i].getText()<<" from "<<messages[i].getSender()<<" to "<<messages[i].getReceiver()<<std::endl;
-            messages[i].setRead(true);
+        messages[i].setRead(true);
+        return (messages[i].getText());
     }
     else
         throw std::out_of_range("the message does not exist");
@@ -69,7 +69,7 @@ const Message& Chat::lastMessage() const {
     return messages.back();
 }
 
-int Chat::getnumberReadMessage() {
+int Chat::getnumberReadMessage() const {
     int c=0;
     for(int i=0; i<messages.size(); i++){
         if(messages[i].isRead())
@@ -78,7 +78,7 @@ int Chat::getnumberReadMessage() {
     return c;
 }
 
-int Chat::getnumberUnreadMessage() {
+int Chat::getnumberUnreadMessage() const {
     int c=0;
     for(int i=0; i<messages.size(); i++){
         if(!messages[i].isRead())
@@ -86,6 +86,7 @@ int Chat::getnumberUnreadMessage() {
     }
     return c;
 }
+
 
 
 

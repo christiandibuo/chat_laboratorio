@@ -21,7 +21,7 @@ void Notifier::display(const Message& message) {
     std::cout<<"messaggio da: "<<message.getSender()<<": "<<message.getText();
 }
 
-bool Notifier::isNotifierActive() {
+bool Notifier::isNotifierActive() const{
     return notificationState;
 }
 
@@ -40,3 +40,4 @@ void Notifier::detach() {
     subject->remove(ntfr);
 
 }
+

@@ -21,7 +21,7 @@ public:
 
     void display(const Message &message);
 
-    bool isNotifierActive ();
+    bool isNotifierActive () const;
 
     void setNotificationState(bool notificationState);
 

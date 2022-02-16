@@ -16,13 +16,13 @@ class User;
 
 class Chat :public Subject{
 public:
-    explicit Chat (const User firstUser,const User secondUser);
+    explicit Chat (const User &firstUser,const User &secondUser);
 
     virtual ~Chat();
 
     void addNewMessage(const Message& newmessage);
 
-    void readMessage(int i);
+    const std::string& readMessage(int i);
 
     void setFirstuserName(const std::string &firstuserName);
 
@@ -40,9 +40,9 @@ public:
 
     void notify() override;
 
-    int getnumberReadMessage();
+    int getnumberReadMessage() const;
 
-    int getnumberUnreadMessage();
+    int getnumberUnreadMessage() const;
 
 private:
     std::string firstuserName;

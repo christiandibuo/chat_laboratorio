@@ -20,8 +20,8 @@ int main() {
     }
     std::cout<<"numero messaggi non letti "<<chat->getnumberUnreadMessage()<<std::endl;
     try {
-        chat->readMessage(0);
-        chat->readMessage(1);
+        std::cout<<chat->readMessage(0)<<std::endl;
+        std::cout<<chat->readMessage(1)<<std::endl;
     }
     catch(std::out_of_range& e){
         std::cerr<<"out of range error "<<e.what()<<std::endl;
