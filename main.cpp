@@ -13,7 +13,10 @@ int main() {
     Message answer("non ho programmi, te?", "christian", "riccardo");
     chat->addNewMessage(firstM);
     chat->addNewMessage(answer);
-    chat->readMessage(1,"christian", "riccardo");
+    std::cout<<chat->numberUnreadMessage()<<std::endl;
+    chat->readMessage(0);
+    chat->readMessage(1);
+    std::cout<<chat->numberUnreadMessage()<<std::endl;
     Notifier ntfr(true,chat);
 
     christian.deleteChat(riccardo);

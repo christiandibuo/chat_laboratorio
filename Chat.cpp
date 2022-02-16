@@ -5,7 +5,7 @@
 #include <list>
 #include "Chat.h"
 
-Chat::Chat(User firstUser, User secondUser): firstuserName(firstUser.getUsername()), seconduserName(secondUser.getUsername()) {
+Chat::Chat(const User firstUser,const User secondUser): firstuserName(firstUser.getUsername()), seconduserName(secondUser.getUsername()) {
 }
 
 Chat::~Chat() {
@@ -13,25 +13,25 @@ Chat::~Chat() {
 }
 
 void Chat::addNewMessage(const Message & newmessage) {
-    messages.push_back(newmessage);
-    this->notify();
+    if ((newmessage.getSender() == getSeconduserName() && newmessage.getReceiver() == getFirstuserName())
+    || ( newmessage.getSender() == getFirstuserName() && newmessage.getReceiver() == getSeconduserName())) {
+        messages.push_back(newmessage);
+        this->notify();
+    } else {
+        if(newmessage.getSender() != getSeconduserName() && newmessage.getSender() != getFirstuserName())
+            std::cout << "sender is uncorrect"<<std::endl;
+        if (newmessage.getReceiver() != getSeconduserName() && newmessage.getReceiver() != getFirstuserName())
+            std::cout << "receiver is uncorrect"<<std::endl;
+    }
 }
 
-void Chat::readMessage(int i, std::string receiver, std::string sender) {
+void Chat::readMessage(int i) {
     if( i>=0 && i<messages.size()) {
-        if (messages[i].getReceiver() == receiver && messages[i].getSender() == sender)
-            std::cout << messages[i].getText();
-        else {
-            if (messages[i].getReceiver() == receiver && messages[i].getSender() != sender)
-                std::cout << "sender is uncorrect";
-            if (messages[i].getReceiver() != receiver && messages[i].getSender() == sender)
-                std::cout << "receiver is uncorrect";
-        }
+            std::cout << messages[i].getText()<<std::endl;
+            messages[i].setRead(true);
     }
-    else{
+    else
         throw std::out_of_range("the message does not exist");
-    }
-
 
 }
 
@@ -67,4 +67,24 @@ void Chat::notify() {
 const Message& Chat::lastMessage() const {
     return messages.back();
 }
+
+int Chat::numberReadMessage() {
+    int c=0;
+    for(int i=0; i<messages.size(); i++){
+        if(messages[i].isRead())
+            c++;
+    }
+    return c;
+}
+
+int Chat::numberUnreadMessage() {
+    int c=0;
+    for(int i=0; i<messages.size(); i++){
+        if(!messages[i].isRead())
+            c++;
+    }
+    return c;
+}
+
+
 

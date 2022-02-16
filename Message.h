@@ -9,7 +9,9 @@
 
 class Message {
 public:
-    Message(std::string text, std::string receiver, std::string sender):text(text), receiver(receiver), sender(sender){}
+    Message(const std::string text, const std::string receiver,const std::string sender, bool read=false)
+    :text(text), receiver(receiver), sender(sender), read(read){}
+
     ~Message(){}
 
     const std::string &getSender() const {
@@ -24,11 +26,21 @@ public:
         return text;
     }
 
+    bool isRead() const {
+        return read;
+    }
+
+    void setRead(bool read) {
+        Message::read = read;
+    }
 
 private:
     std::string sender;
     std::string receiver;
     std::string text;
+    bool read;
+public:
+
 };
 
 

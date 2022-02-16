@@ -12,7 +12,7 @@ class Chat;
 
 class User {
 public:
-    User(std::string name);
+    explicit User(const std::string name);
     ~User();
 
     const std::string &getUsername() const;
