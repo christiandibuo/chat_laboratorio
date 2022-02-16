@@ -19,15 +19,16 @@ void Chat::addNewMessage(const Message & newmessage) {
         this->notify();
     } else {
         if(newmessage.getSender() != getSeconduserName() && newmessage.getSender() != getFirstuserName())
-            std::cout << "sender is uncorrect"<<std::endl;
+            throw std::invalid_argument("sender is uncorrect");
         if (newmessage.getReceiver() != getSeconduserName() && newmessage.getReceiver() != getFirstuserName())
-            std::cout << "receiver is uncorrect"<<std::endl;
+            throw std::invalid_argument("receiver is uncorrect");
+
     }
 }
 
 void Chat::readMessage(int i) {
     if( i>=0 && i<messages.size()) {
-            std::cout << messages[i].getText()<<std::endl;
+            std::cout << messages[i].getText()<<" from "<<messages[i].getSender()<<" to "<<messages[i].getReceiver()<<std::endl;
             messages[i].setRead(true);
     }
     else
@@ -68,7 +69,7 @@ const Message& Chat::lastMessage() const {
     return messages.back();
 }
 
-int Chat::numberReadMessage() {
+int Chat::getnumberReadMessage() {
     int c=0;
     for(int i=0; i<messages.size(); i++){
         if(messages[i].isRead())
@@ -77,7 +78,7 @@ int Chat::numberReadMessage() {
     return c;
 }
 
-int Chat::numberUnreadMessage() {
+int Chat::getnumberUnreadMessage() {
     int c=0;
     for(int i=0; i<messages.size(); i++){
         if(!messages[i].isRead())

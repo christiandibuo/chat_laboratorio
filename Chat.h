@@ -40,9 +40,9 @@ public:
 
     void notify() override;
 
-    int numberReadMessage();
+    int getnumberReadMessage();
 
-    int numberUnreadMessage();
+    int getnumberUnreadMessage();
 
 private:
     std::string firstuserName;

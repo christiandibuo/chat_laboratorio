@@ -12,4 +12,6 @@ TEST(Notifier, NotificationState){
     std::shared_ptr<Chat> chats=std::make_shared<Chat>(*chat);
     Notifier ntfr(false,chats);
     ASSERT_FALSE(ntfr.isNotifierActive());
+    ntfr.setNotificationState(true);
+    ASSERT_TRUE(ntfr.isNotifierActive());
 }
